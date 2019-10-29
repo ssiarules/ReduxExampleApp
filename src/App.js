@@ -5,13 +5,12 @@ import { Provider } from 'react-redux'; //provider react component the glue for 
 
 import Posts from './components/Posts';
 import PostForm from './components/Postform';
-import { createStore,applyMiddleware } from 'redux';
 
-const store = createStore(() => [],{},applyMiddleware())
+import store from './store';
 
 function App() {
   return (
-    <Provider store={ store }> //store holds the state
+    <Provider store={ store } /* store holds the state */ >
       <div className="App">
         <header className="App-header">
           <img src={ logo } className="App-logo" alt="logo" />
