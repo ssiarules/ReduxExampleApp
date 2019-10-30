@@ -9,6 +9,11 @@ const initialState = {
 
 export default function(state = initialState,action) {
     switch (action.type) {
+        case FETCH_POSTS: //type is required FETCH_POSTS is coming from postAction.js
+            return {
+                ...state, // ... (spread operator)
+                items: action.payload //payloads coming from postAction.js
+            }
         default:
             return state;
     }
