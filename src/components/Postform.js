@@ -1,4 +1,7 @@
 import React,{ Component } from 'react';
+import ProTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { createPost } from '../actions/postActions';
 
 class PostForm extends Component {
 
@@ -18,47 +21,42 @@ class PostForm extends Component {
         this.setState({ [e.target.name]: e.target.value });
     }
 
-    onSubmit(e){
+    onSubmit(e) {
         e.preventDefault();
 
         const post = {
             title: this.state.title,
             body: this.state.body
         };
-        fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(post)
-        })
-        .then(res => res.json())
-        .then(data => console.log(data));
+
+        this.props.createPost(post);
     }
 
     render() {
         return (
             <div>
                 <h1> Add Post</h1>
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={ this.onSubmit }>
                     <div>
-                        <label> Title: </label> <br 
-                        />
-                        <input type="text"
-                        name="title" 
-                        onChange={this.onChange} 
-                        value={this.state.title} 
+                        <label> Title: </label>
+                        <br />
+                        <input
+                            type="text"
+                            name="title"
+                            onChange={ this.onChange }
+                            value={ this.state.title }
                         />
                     </div>
-                    <br/>
+                    <br />
                     <div>
-                        <label> Body: </label> <br />
-                        <textarea 
-                        name="body" 
-                        onChange={this.onChange} 
-                        value={this.state.body} />
+                        <label> Body: </label>
+                        <br />
+                        <textarea
+                            name="body"
+                            onChange={ this.onChange }
+                            value={ this.state.body } />
                     </div>
-                    <br/>
+                    <br />
 
                     <button type="submit">Submit</button>
                 </form>
@@ -67,4 +65,9 @@ class PostForm extends Component {
     }
 }
 
-export default PostForm;
+// user inputs creates the data and creates a new post
+PostForm.prototypes = {
+    createPost: ProTypes.func.isRequired
+};
+
+export default connect(null,{ createPost })(PostForm);

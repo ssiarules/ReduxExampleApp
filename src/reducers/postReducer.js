@@ -13,7 +13,12 @@ export default function(state = initialState,action) {
             return {
                 ...state, // ... (spread operator)
                 items: action.payload //payloads coming from postAction.js
-            }
+            };
+        case NEW_POST:
+            return {
+                ...state,
+                item: action.payload
+            };
         default:
             return state;
     }

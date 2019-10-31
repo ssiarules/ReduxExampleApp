@@ -1,0 +1,6 @@
+add the functionality to add a post 
+- we added the action
+- we sent the type and payload to the reducer
+- the reducer we decided how we wanted our state to come down, 
+    we just wanted that single item to get added to our state then it reflected in the other component
+    inside the post component.
